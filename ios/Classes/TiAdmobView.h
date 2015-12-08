@@ -6,13 +6,7 @@
  */
 
 #import "TiUIView.h"
-#import "GADBannerView.h"
-#import "GADBannerViewDelegate.h"
 
-@interface TiAdmobView : TiUIView<GADBannerViewDelegate> {
-
-@private
-	GADBannerView *ad;
-}
+@interface TiAdmobView : TiUIView 
 
 @end

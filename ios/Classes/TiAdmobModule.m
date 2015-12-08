@@ -9,7 +9,16 @@
 #import "TiBase.h"
 #import "TiHost.h"
 #import "TiUtils.h"
-#import "GADRequest.h"
+#import "TiApp.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
+
+@interface TiAdmobModule()<GADInterstitialDelegate> {
+    GADInterstitial *interstitial_;
+}
+
+@property NSString* adUnitId;
+
+@end
 
 @implementation TiAdmobModule
 
@@ -54,6 +63,42 @@
 	[super dealloc];
 }
 
+#pragma mark - added 1.9.1
+
+- (void)startAdMobIntersBanner:(id)args
+{
+    ENSURE_UI_THREAD_1_ARG(args)
+    NSLog(@"%s%d args %@",__FUNCTION__,__LINE__,args);
+    
+    _adUnitId = [args objectAtIndex:0];
+    NSLog(@"%s%d _adUnitId %@",__FUNCTION__,__LINE__,_adUnitId);
+    
+    [self loadAdMobIntersBanner];
+    
+}
+
+- (void)presentInterstitialFromRootViewController:(id)args {
+    NSLog(@"%s%d",__FUNCTION__,__LINE__);
+    
+    [interstitial_ presentFromRootViewController:[TiApp controller]];
+}
+
+// AdMobのインタースティシャル広告読み込み
+- (void)loadAdMobIntersBanner
+{
+    NSLog(@"%s%d _adUnitId %@",__FUNCTION__,__LINE__,_adUnitId);
+    
+    
+    interstitial_ = [[GADInterstitial alloc] initWithAdUnitID:_adUnitId];
+    
+    interstitial_.delegate = self;
+    
+    GADRequest *request = [GADRequest request];
+    
+    [interstitial_ loadRequest:request];
+    
+}
+
 #pragma mark Internal Memory Management
 
 -(void)didReceiveMemoryWarning:(NSNotification*)notification
@@ -63,8 +108,56 @@
 	[super didReceiveMemoryWarning:notification];
 }
 
-#pragma mark Constants
+#pragma mark Ad Request Lifecycle Notifications
 
-MAKE_SYSTEM_STR(SIMULATOR_ID,GAD_SIMULATOR_ID);
+/// Called when an interstitial ad request succeeded. Show it at the next transition point in your
+/// application such as when transitioning between view controllers.
+- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
+    NSLog(@"%s%d",__FUNCTION__,__LINE__);
+    [self fireEvent:@"interstitialDidReceiveAd"];
+}
+
+/// Called when an interstitial ad request completed without an interstitial to
+/// show. This is common since interstitials are shown sparingly to users.
+- (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"%s%d",__FUNCTION__,__LINE__);
+    
+}
+
+#pragma mark Display-Time Lifecycle Notifications
+
+/// Called just before presenting an interstitial. After this method finishes the interstitial will
+/// animate onto the screen. Use this opportunity to stop animations and save the state of your
+/// application in case the user leaves while the interstitial is on screen (e.g. to visit the App
+/// Store from a link on the interstitial).
+- (void)interstitialWillPresentScreen:(GADInterstitial *)ad {
+    NSLog(@"%s%d",__FUNCTION__,__LINE__);
+    
+}
+
+/// Called before the interstitial is to be animated off the screen.
+- (void)interstitialWillDismissScreen:(GADInterstitial *)ad {
+    NSLog(@"%s%d",__FUNCTION__,__LINE__);
+    
+}
+
+/// Called just after dismissing an interstitial and it has animated off the screen.
+- (void)interstitialDidDismissScreen:(GADInterstitial *)ad {
+    NSLog(@"%s%d",__FUNCTION__,__LINE__);
+    [self loadAdMobIntersBanner];
+    
+}
+
+/// Called just before the application will background or terminate because the user clicked on an
+/// ad that will launch another application (such as the App Store). The normal
+/// UIApplicationDelegate methods, like applicationDidEnterBackground:, will be called immediately
+/// before this.
+- (void)interstitialWillLeaveApplication:(GADInterstitial *)ad {
+    NSLog(@"%s%d",__FUNCTION__,__LINE__);
+    
+}
+
+
+#pragma mark Constants
 
 @end
