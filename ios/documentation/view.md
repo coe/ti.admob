@@ -101,3 +101,8 @@ restart anything you may have stopped as part of "willPresentScreen".
 Sent just before the application will background or terminate because the
 user clicked on an ad that will launch another application (such as the App
 Store).
+
+### interstitialDidReceiveAd
+
+Received interstitial Ad.
+
