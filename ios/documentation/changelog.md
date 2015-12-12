@@ -1,6 +1,8 @@
 # Change Log
 <pre>
-v1.9.1 Use Admob new SDK framework
+v1.9.1 Use Admob new SDK framework.
+Please add GoogleMobileAds.framework to /Library/Frameworks/
+
         Added `startAdMobIntersBanner` and `presentInterstitialFromRootViewController`
         New Event `interstitialDidReceiveAd`
 
