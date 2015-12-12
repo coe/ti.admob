@@ -68,6 +68,15 @@ parameters[object]: a dictionary object of properties defined in [Ti.Admob.View]
 		gender: 'male',
 		keywords: ''
 	});
+	
+	/*
+	 Interstitial example
+	 */
+	Admob.addEventListener("interstitialDidReceiveAd", function(e) {
+	  Admob.presentInterstitialFromRootViewController();
+	});
+	
+	Admob.startAdMobIntersBanner("<<YOUR Interstitial AD UNIT ID HERE>>");
 
 ## Usage
 
