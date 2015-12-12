@@ -21,7 +21,7 @@
 		CE6C17A61982D1660017C788 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C17A51982D1660017C788 /* CoreTelephony.framework */; };
 		CE6C17A81982D1780017C788 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C17A71982D1780017C788 /* StoreKit.framework */; };
 		CE6C17AA1982D1870017C788 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C17A91982D1870017C788 /* SystemConfiguration.framework */; };
-		CE8B78001C15E04B00C381E2 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8B77FF1C15E04B00C381E2 /* GoogleMobileAds.framework */; };
+		CEEDDC081C1C5F8500B136D7 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEDDC071C1C5F8500B136D7 /* GoogleMobileAds.framework */; };
 		DAD5D7CF12527E11009CF986 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD5D7CE12527E11009CF986 /* AudioToolbox.framework */; };
 		DAD5D7D512527E2F009CF986 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD5D7D412527E2F009CF986 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
@@ -42,7 +42,8 @@
 		CE6C17A51982D1660017C788 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		CE6C17A71982D1780017C788 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CE6C17A91982D1870017C788 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		CE8B77FF1C15E04B00C381E2 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = ../../../../warkspace/framework/GoogleMobileAds.framework; sourceTree = "<group>"; };
+		CEEDDC071C1C5F8500B136D7 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = /Library/Frameworks/GoogleMobileAds.framework; sourceTree = "<absolute>"; };
+		CEEDDC0A1C1C5FCD00B136D7 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		D2AAC07E0554694100DB518D /* libTiAdmob.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTiAdmob.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD5D7CE12527E11009CF986 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DAD5D7D112527E1A009CF986 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -56,7 +57,7 @@
 			files = (
 				CE6C17A01982D1170017C788 /* AdSupport.framework in Frameworks */,
 				DAD5D7CF12527E11009CF986 /* AudioToolbox.framework in Frameworks */,
-				CE8B78001C15E04B00C381E2 /* GoogleMobileAds.framework in Frameworks */,
+				CEEDDC081C1C5F8500B136D7 /* GoogleMobileAds.framework in Frameworks */,
 				CE6C17A21982D12D0017C788 /* AVFoundation.framework in Frameworks */,
 				CE6C17A41982D13A0017C788 /* CoreGraphics.framework in Frameworks */,
 				CE6C17A61982D1660017C788 /* CoreTelephony.framework in Frameworks */,
@@ -81,7 +82,8 @@
 		0867D691FE84028FC02AAC07 /* admob */ = {
 			isa = PBXGroup;
 			children = (
-				CE6C17AB1982D1C90017C788 /* GoogleMobileAdsSdkiOS */,
+				CEEDDC0A1C1C5FCD00B136D7 /* README.txt */,
+				CEEDDC071C1C5F8500B136D7 /* GoogleMobileAds.framework */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
@@ -127,14 +129,6 @@
 				24DD6D1B1134B66800162E58 /* titanium.xcconfig */,
 			);
 			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		CE6C17AB1982D1C90017C788 /* GoogleMobileAdsSdkiOS */ = {
-			isa = PBXGroup;
-			children = (
-				CE8B77FF1C15E04B00C381E2 /* GoogleMobileAds.framework */,
-			);
-			path = GoogleMobileAdsSdkiOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,8 +212,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DSTROOT = /tmp/TiAdmob.dst;
 				FRAMEWORK_SEARCH_PATHS = (
-					/Users/user/Documents/warkspace/framework,
+					/Library/Frameworks,
 					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -270,8 +265,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/TiAdmob.dst;
 				FRAMEWORK_SEARCH_PATHS = (
-					/Users/user/Documents/warkspace/framework,
+					/Library/Frameworks,
 					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_MODEL_TUNING = G5;
