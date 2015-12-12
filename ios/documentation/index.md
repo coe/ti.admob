@@ -28,6 +28,8 @@ The SDK also requires that the following frameworks are available when you build
 * StoreKit
 * SystemConfiguration
 
+Please Download Admob SDK and add GoogleMobileAds.framework to /Library/Frameworks/
+
 ## Accessing the Ti.Admob Module
 
 To access this module from JavaScript, you would do the following:
